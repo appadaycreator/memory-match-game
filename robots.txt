@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://appadaycreator.github.io/memory-match-game/sitemap.xml
