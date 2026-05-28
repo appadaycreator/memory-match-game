@@ -12,10 +12,11 @@
 <meta name="theme-color" content="#6366F1">
 <meta name="description" content="カードをめくってペアを合わせる記憶力ゲーム。都道府県・動物・果物・英単語・国旗の5テーマ。難易度3段階で脳トレ！">
 <link rel="canonical" href="https://appadaycreator.com/memory-match-game/">
-<meta property="og:title" content="メモリーマッチ | 神経衰弱ゲーム">
+<meta property="og:title" content="メモリーマッチ | 神経衰弱ゲーム - 都道府県・動物・英単語テーマ">
 <meta property="og:description" content="都道府県・動物・英単語など5テーマの神経衰弱ゲーム。脳トレにも最適！">
 <meta property="og:url" content="https://appadaycreator.com/memory-match-game/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP" />
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "メモリーマッチ | 神経衰弱ゲーム", "url": "https://appadaycreator.com/memory-match-game/", "description": "カードペアを合わせる記憶力ゲーム。都道府県・動物・果物・英単語・国旗の5テーマ", "applicationCategory": "GameApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}</script>
 <!-- GTM -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
@@ -33,6 +34,8 @@
   .card-container { cursor: pointer; }
   .card-container.matched { cursor: default; }
   #gameBoard { display: grid; gap: 8px; }
+  @keyframes mm-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+  .mm-shake{animation:mm-shake .35s ease;}
 
 /* Phase 8: Mobile Optimization */
 input, select, textarea { font-size: 16px !important; }
@@ -41,19 +44,20 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
   body { font-size: 16px; }
   .max-w-lg { padding-left: 1rem; padding-right: 1rem; }
 }
+
+@media print{
+  header,footer,nav,button,.no-print,
+  [class*="share"],[class*="affiliate"],[id*="share"],
+  [id*="affiliate"],[id*="banner"],
+  script,noscript{display:none!important}
+  body{background:#fff!important;color:#000!important;font-size:12pt}
+  [id*="result"],[id*="output"],[id*="advice"],[id*="diagnosis"],[class*="result"]{display:block!important}
+  a[href]::after{content:none!important}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"このサービスは無料ですか？","acceptedAnswer":{"@type":"Answer","text":"はい、完全無料・登録不要でご利用いただけます。"}},{"@type":"Question","name":"入力データはどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"お使いのデバイス内にのみ保存されます。外部送信は行いません。"}},{"@type":"Question","name":"結果はどのくらい正確ですか？","acceptedAnswer":{"@type":"Answer","text":"あくまで参考情報です。重要な判断の際は専門家にご相談ください。"}},{"@type":"Question","name":"どのような人が使っていますか？","acceptedAnswer":{"@type":"Answer","text":"初心者から専門家まで、多くの方にご利用いただいています。特に決断が必要な場面で活躍します。"}},{"@type":"Question","name":"結果をシェアできますか？","acceptedAnswer":{"@type":"Answer","text":"はい、診断結果はスクリーンショットやURLで友人・家族とシェアできます。"}},{"@type":"Question","name":"有料プランはありますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ、すべての機能を完全無料でご利用いただけます。"}},{"@type":"Question","name":"スコアは保存されますか？","acceptedAnswer":{"@type":"Answer","text":"スコアはブラウザのローカルストレージに保存されます。ブラウザのデータを削除するとリセットされます。"}},{"@type":"Question","name":"オフラインで遊べますか？","acceptedAnswer":{"@type":"Answer","text":"初回表示後はキャッシュを利用して遊べる場合があります。ただし一部の機能はオンライン接続が必要です。"}}]}</script>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "診断ツール",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.5",
-    "reviewCount": "47"
-  }
-}
+
 </script>
 <script type="application/ld+json">
 {
@@ -76,8 +80,8 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
   "@type": "WebPage",
   "mainEntity": {
     "@type": "Article",
-    "headline": "診断ツール",
-    "description": "無料の診断ツール。簡単な質問にお答えいただくだけで、最適なアドバイスを提供します。",
+    "headline": "メモリーマッチ（神経衰弱）で記憶力を鍛えよう - カードのペアを合わせる脳トレゲーム",
+    "description": "カードのペアを合わせる神経衰弱ゲーム。記憶力と集中力を楽しく鍛えられる無料脳トレゲーム。難易度4段階で子どもから大人まで楽しめる。",
     "datePublished": "2026-05-23",
     "dateModified": "2026-05-23",
     "author": {
@@ -96,7 +100,7 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
 }
 </script>
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="無料診断ツール">
+<meta name="twitter:title" content="メモリーマッチ | 神経衰弱ゲーム - 都道府県・動物・英単語テーマ">
 <meta name="twitter:description" content="簡単な質問に答えるだけで、最適なアドバイスを提供します。">
 <meta name="twitter:image" content="https://appadaycreator.com/twitter-card.png">
 <meta name="twitter:site" content="@appadaycreator">
@@ -118,6 +122,7 @@ window.addEventListener('unhandledrejection',function(e){console.warn('Rejection
   <div class="text-center mb-6">
     <h1 class="text-3xl font-bold text-purple-600 mb-2">🧠 メモリーマッチ</h1>
     <p class="text-gray-600">カードをめくってペアを見つけよう！神経衰弱ゲーム</p>
+    <span id="mm-streak-badge" style="display:none;background:#fef3c7;color:#92400e;font-size:.75rem;font-weight:700;padding:3px 8px;border-radius:20px;border:1px solid #fcd34d;white-space:nowrap;margin-top:6px;display:inline-block;"></span>
   </div>
 
   <div class="mb-4 text-center">
@@ -202,10 +207,10 @@ window.addEventListener('unhandledrejection',function(e){console.warn('Rejection
 
     <div class="border border-purple-200 rounded-xl p-4 bg-purple-50 mb-4">
       <p class="text-sm font-bold text-purple-700 mb-2">🧠 記憶力・脳トレをもっと楽しもう！</p>
-      <a href="https://www.amazon.co.jp/s?k=脳トレ+記憶力+本&tag=appadaycrea0f-22" target="_blank" class="block bg-orange-500 hover:bg-orange-600 text-white text-center py-2 px-4 rounded-lg text-sm font-medium mb-2">
+      <a href="https://www.amazon.co.jp/s?k=脳トレ+記憶力+本&tag=appadaycrea0f-22" target="_blank" class="block bg-orange-500 hover:bg-orange-600 text-white text-center py-2 px-4 rounded-lg text-sm font-medium mb-2 js-track-affiliate" data-platform="Amazon" data-item-name="脳トレ記憶力本" data-link-type="affiliate_link" rel="noopener noreferrer">
         🛒 Amazon で脳トレ本を探す
       </a>
-      <a href="https://px.a8.net/svt/ejp?a8mat=4AVCO8+3ORU2Y+5JTC+5YRHE" target="_blank" rel="nofollow" class="block bg-green-500 hover:bg-green-600 text-white text-center py-2 px-4 rounded-lg text-sm font-medium">
+      <a href="https://px.a8.net/svt/ejp?a8mat=4AVCO8+3ORU2Y+5JTC+5YRHE" target="_blank" rel="nofollow noopener noreferrer" class="block bg-green-500 hover:bg-green-600 text-white text-center py-2 px-4 rounded-lg text-sm font-medium">
         📖 ヨンデミーで楽しく読書習慣
       </a>
       <img src="https://www11.a8.net/0.gif?a8mat=4AVCO8+3ORU2Y+5JTC+5YRHE" width="1" height="1" style="display:none" alt="" loading="lazy">
@@ -294,7 +299,26 @@ function selectSize(s) {
   document.querySelector(`[data-s="${s}"]`).className = 'size-btn active bg-green-500 text-white py-2 px-3 rounded-lg text-sm font-medium';
 }
 
+function checkMmStreak() {
+  const today = new Date().toISOString().slice(0, 10);
+  const last = localStorage.getItem('mm_last_play_date') || '';
+  let streak = parseInt(localStorage.getItem('mm_streak') || '0');
+  if (last !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    streak = (last === yesterday) ? streak + 1 : 1;
+    localStorage.setItem('mm_last_play_date', today);
+    localStorage.setItem('mm_streak', String(streak));
+  }
+  const badge = document.getElementById('mm-streak-badge');
+  if (badge && streak >= 1) {
+    const flame = streak >= 30 ? '🔥🔥🔥' : streak >= 7 ? '🔥🔥' : '🔥';
+    badge.textContent = `${flame} ${streak}日連続`;
+    badge.style.display = 'inline-block';
+  }
+}
+
 function startGame() {
+  checkMmStreak();
   clearInterval(timerInterval);
   const [rows, cols] = gridSize.split('x').map(Number);
   const totalCards = rows * cols;
@@ -358,6 +382,8 @@ function flipCard(card) {
       canFlip = true;
       if (matched === totalPairs) setTimeout(showResult, 500);
     } else {
+      // 不正解シェイク
+      flipped.forEach(c => { c.classList.add('mm-shake'); setTimeout(()=>c.classList.remove('mm-shake'),350); });
       setTimeout(() => {
         flipped.forEach(c => c.classList.remove('flipped'));
         flipped = [];
